@@ -10,7 +10,7 @@ import xarray as xr
 def get_sample_data(kind):
 
     if kind == "training":
-        data = xr.open_zarr("../data/downscale_test_data.zarr.zip", group=kind)
+        data = xr.open_zarr("./data/downscale_test_data.zarr.zip", group=kind)
         # extract 1 point of training data for precipitation and temperature
         df = (
             data.isel(point=0)
@@ -21,7 +21,7 @@ def get_sample_data(kind):
         df["pcp"] *= 24
         return df.resample("1d").first()
     elif kind == "targets":
-        data = xr.open_zarr("../data/downscale_test_data.zarr.zip", group=kind)
+        data = xr.open_zarr("./data/downscale_test_data.zarr.zip", group=kind)
         # extract 1 point of training data for precipitation and temperature
         return (
             data.isel(point=0)
@@ -31,7 +31,7 @@ def get_sample_data(kind):
     elif kind == "wind-hist":
         return (
             xr.open_dataset(
-                "../data/uas/uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.19801990.nc"
+                "./data/uas/uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.19801990.nc"
             )["uas"]
             .sel(lat=40.25, lon=-109.2, method="nearest")
             .squeeze()
@@ -39,7 +39,7 @@ def get_sample_data(kind):
         )
     elif kind == "wind-obs":
         return (
-            xr.open_dataset("../data/uas/uas.gridMET.NAM-44i.Colorado.19801990.nc")["uas"]
+            xr.open_dataset("./data/uas/uas.gridMET.NAM-44i.Colorado.19801990.nc")["uas"]
             .sel(lat=40.25, lon=-109.2, method="nearest")
             .squeeze()
             .to_dataframe()[["uas"]]
@@ -47,7 +47,7 @@ def get_sample_data(kind):
     elif kind == "wind-rcp":
         return (
             xr.open_dataset(
-                "../data/uas/uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.19902000.nc"
+                "./data/uas/uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.19902000.nc"
             )["uas"]
             .sel(lat=40.25, lon=-109.2, method="nearest")
             .squeeze()
