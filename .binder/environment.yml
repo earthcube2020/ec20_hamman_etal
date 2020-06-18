@@ -2,7 +2,7 @@ name: skdownscale
 channels:
   - conda-forge
 dependencies:
-  - pangeo-notebook
+  - pangeo-notebook=2020.06.18
   - pandas
   - xarray
   - seaborn
@@ -22,4 +22,4 @@ dependencies:
   - pip
   - pip:
     - git+https://github.com/pydata/xarray.git@e8bd8665e8fd762031c2d9c87987d21e113e41cc
-    - git+https://github.com/jhamman/scikit-downscale.git@8b8022f13fcd2cbdca302b4694e1a3df9af1bc6b
+    - scikit-downscale
